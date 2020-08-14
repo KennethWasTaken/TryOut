@@ -1,0 +1,33 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title> {{plant.plantName}} <mat-icon> local_florist</mat-icon>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-card-title-group>
+            <h3 mat-card-title>Eigenschappen:</h3>
+            <mat-card-subtitle>
+                <mat-list>
+                    <mat-list-item *ngFor="let eigenschap of plant.eigenschappen">
+                        <app-eigenschap [eigenschap]="eigenschap">
+                        </app-eigenschap>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-subtitle>
+            <h3 mat-card-title>Verzorging:</h3>
+            <mat-card-subtitle>
+                <mat-list>
+                    <mat-list-item *ngFor="let verzorging of plant.verzorgingen">
+                        <app-verzorging [verzorging]="verzorging"> </app-verzorging>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-subtitle>
+            <mat-card-subtitle>Beschrijving: {{plant.beschrijving}}</mat-card-subtitle>
+        </mat-card-title-group>
+        <button (click)="deletePlant()">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+    </mat-card-content>
+    <mat-card-footer> Added on: {{plant.dateAdded | date: 'mediumDate'}}</mat-card-footer>
+    <!-- <mat-card-footer> Added on: {{plant.dateAdded | date}}</mat-card-footer>
+</mat-card> -->

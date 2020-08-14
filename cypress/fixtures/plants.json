@@ -1,0 +1,74 @@
+[
+    {
+        "Id": 1,
+        "PlantName": "Monstera",
+        "Created": "2001-01-01T12:40:03.184905",
+        "Beschrijving": "Mostera beschrijving",
+        "Verzorging": [
+            {
+                "Id": 1,
+                "Water": "Weinig",
+                "Licht": "Schaduw",
+                "Onderhoud": "Gemakkelijk",
+                "PlantId": 1
+            }
+        ],
+        "Onderhoud": [
+            {
+                "Id": 1,
+                "Locatie": "Z-Amerika",
+                "Hoogte": "5",
+                "Bloemkleur": "Wit",
+                "PlantId": 1
+            }
+        ]
+    },
+    {
+        "Id": 2,
+        "PlantName": "Philo",
+        "Created": "2002-02-02T12:40:03.184905",
+        "Beschrijving": "Philo beschrijving",
+        "Verzorging": [
+            {
+                "Id": 1,
+                "Water": "Veel",
+                "Licht": "Zon",
+                "Onderhoud": "Moeilijk",
+                "PlantId": 1
+            }
+        ],
+        "Onderhoud": [
+            {
+                "Id": 1,
+                "Locatie": "Z-Amerika",
+                "Hoogte": "5",
+                "Bloemkleur": "Wit",
+                "PlantId": 1
+            }
+        ]
+    },
+    {
+        "Id": 3,
+        "PlantName": "Damn",
+        "Created": "2003-03-03T12:40:03.184905",
+        "Beschrijving": "Damn Son beschrijving",
+        "Verzorging": [
+            {
+                "Id": 1,
+                "Water": "Veel",
+                "Licht": "Zon",
+                "Onderhoud": "Moeilijk",
+                "PlantId": 3
+            }
+        ],
+        "Onderhoud": [
+            {
+                "Id": 1,
+                "Locatie": "Z-Amerika",
+                "Hoogte": "5",
+                "Bloemkleur": "Wit",
+                "PlantId": 3
+            }
+        ]
+    }
+]

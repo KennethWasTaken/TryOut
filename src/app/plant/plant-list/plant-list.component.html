@@ -1,0 +1,58 @@
+<div fxLayout="column" fxLayoutGap="2%">
+  <!-- <app-add-plant (newPlant)="addNewPlant($event)"></app-add-plant> -->
+  <mat-card>
+    <mat-form-field>
+      <input 
+        matInput 
+        (keyup)='filterPlant$.next($event.target.value)'
+        placeholder="Search"  
+        type="text" 
+        data-cy="plantFilterInput"
+        [value]="filterPlantName"
+      />
+    </mat-form-field>
+    <!-- bij elke event gt waarde op stream en triggered alle elementen 
+            die subscribed zijn op die stream   | plantFilter:filterPlantName-->
+  </mat-card>
+  <div *ngIf="plants$ | async as plants; else loadingOrError">
+    <div 
+      fxLayout="row wrap" 
+      fxLayout.xs="column" 
+      fxLayoutWrap fxLayoutGap="0.5%" 
+      fxLayoutAlign="start"
+    >
+      <div class="plant" 
+        *ngFor="let plant of (plants| plantFilter:filterPlantName) " 
+        fxFlex="0 0 calc(25%-0.5%)"
+        fxFlex.xs="100%"
+        data-cy="plantList"
+      >
+        <app-plant 
+          [plant]="plant" 
+          data-cy="plantCard"></app-plant>
+      </div>
+    </div>
+  </div>
+
+  <mat-card 
+    class="error" 
+    *ngIf="errorMessage" 
+    data-cy="appError">
+    got an error while loading the plant list: {{ errorMessage }}
+  </mat-card>
+<!-- 
+   <app-add-plant (newPlant)="addNewPlant($event)"></app-add-plant> -->
+
+  
+
+  <ng-template #loadingOrError>
+    <mat-card class="error" data-cy="plantListError" *ngIf="errorMessage; else loading">
+    </mat-card>
+      Error loading list of plants: {{ errorMessage }}. <br /> Try again.
+      <ng-template #loading>
+        <mat-spinner></mat-spinner>
+      </ng-template>
+    
+  </ng-template>
+
+</div>

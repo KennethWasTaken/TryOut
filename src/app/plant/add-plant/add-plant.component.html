@@ -1,0 +1,142 @@
+
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="plant" (ngSubmit) = "onSubmit()"> <!--  propertybind -->
+      <mat-form-field> 
+        <input 
+          matInput 
+          placeholder="plantName" 
+          type="text" 
+          aria-label="plantName"
+          formControlName="plantName"
+          required 
+        />
+         <mat-error
+          *ngIf="plant.get('plantName')['errors'] && plant.get('plantName').touched"
+        >
+          {{ getErrorMessage(plant.get('plantName')['errors']) }}
+        </mat-error> 
+      </mat-form-field>
+
+      <!-- Verzorging -->
+      <div
+        formArrayName="verzorgingen"
+        *ngFor="
+          let item of plant.get('verzorgingen')['controls'];
+          let i = index
+        "
+      >
+        <div [formGroupName]="i">
+          <mat-form-field>
+            <mat-select
+              aria-label="verzorging water"
+              placeholder="water"
+              formControlName="water"
+            >
+              <mat-option *ngFor="let type of waterQuantityOptions" [value]="type">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select
+              placeholder="licht"
+              aria-label="verzorging licht"
+              formControlName="licht"
+            >
+              <mat-option *ngFor="let type of lightQuantityOptions" [value]="type">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select
+              placeholder="onderhoud"
+              aria-label="verzorging onderhoud"
+              formControlName="onderhoud"
+            >
+              <mat-option *ngFor="let type of maintenance" [value]="type">
+                {{ type }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-error *ngIf="item.errors && item.get('plantName').touched">
+          {{ getErrorMessage(item.errors) }}
+        </mat-error>
+      </div>
+      <!-- Eigenschappen -->
+
+      <div
+        formArrayName="eigenschappen"
+        *ngFor="
+          let item of plant.get('eigenschappen')['controls'];
+          let i = index
+        "
+      >
+        <div [formGroupName]="i">
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              aria-label="eigenschap locatie"
+              placeholder="locatie"
+              formControlName="locatie"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              type="text"
+              placeholder="hoogte"
+              aria-label="eigenschap hoogte"
+              formControlName="hoogte"
+            />
+          </mat-form-field>
+          <mat-form-field> 
+            <input
+              matInput
+              placeholder="bloemkleur"
+              aria-label="eigenschap bloemkleur"
+              type="text"
+              formControlName="bloemkleur"
+            />
+          </mat-form-field>
+        </div>
+        <mat-error *ngIf="item.errors && item.get('plantName').touched">
+          {{ getErrorMessage(item.errors) }}
+        </mat-error>
+      </div>
+      <!-- Beschrijving -->
+      <mat-form-field> 
+        <input 
+          matInput 
+          placeholder="beschrijving" 
+          type="text" 
+          aria-label="beschrijving"
+          formControlName="beschrijving"
+          required 
+        />
+        </mat-form-field>
+        <!-- [disabled]="!plant.valid" -->
+      <button 
+        type ="submit" 
+        mat-raised-button 
+        data-cy="addPlantBtn"
+      >
+        Add plant
+      </button >
+    </form>
+  </mat-card-content> 
+</mat-card>    
+<mat-card class="error" *ngIf="errorMessage" data-cy="appError">
+  got an error while adding the plant: {{ errorMessage }}
+</mat-card>
+<mat-card
+  class="confirmation"
+  *ngIf="confirmationMessage"
+  data-cy="appConfirmation"
+>
+  {{ confirmationMessage }}
+</mat-card>
+<!-- addPlant(newplantName)" --> 
